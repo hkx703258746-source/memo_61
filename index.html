@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>简易备忘录</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{padding:30px;max-width:600px;margin:0 auto;font-family:system-ui}
+.item{padding:10px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}
+input{width:80%;padding:8px;margin-bottom:10px}
+button{padding:8px 12px;cursor:pointer}
+</style>
+</head>
+<body>
+<h2>备忘录</h2>
+<input id="inp" placeholder="输入备忘内容">
+<button onclick="add()">新增</button>
+<div id="list"></div>
+<script>
+let arr=JSON.parse(localStorage.getItem('memo'))||[]
+function render(){
+  let html=''
+  arr.forEach((v,i)=>{
+    html+=`<div class="item">${v}<button onclick="del(${i})">删除</button></div>`
+  })
+  document.getElementById('list').innerHTML=html
+}
+function add(){
+  let val=document.getElementById('inp').value.trim()
+  if(!val)return
+  arr.push(val)
+  save()
+  render()
+  document.getElementById('inp').value=''
+}
+function del(i){
+  arr.splice(i,1)
+  render()
+}
+function save(){
+  localStorage.setItem('memo',JSON.stringify(arr))
+}
+render()
+</script>
+</body>
+</html>
