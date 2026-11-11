@@ -14,7 +14,7 @@ MIT License
 直接打开 index.html 即可使用，无需额外环境。
 
 ## 🧩 分支说明
-- main：主分支，稳定可用版本
+- main：主分支，稳定可用版本，修复删除按钮文字对齐bug
 - dev：开发分支
 - feature/add-time：新增备忘时间戳功能分支
 
